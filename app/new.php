@@ -1,20 +1,22 @@
 <!doctype html>
 <html>
 <head>
+  <link rel="stylesheet" href="www/css/styles.css">
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600' rel='stylesheet' type='text/css'>
   <script src="http://code.angularjs.org/snapshot/angular.js"></script>
   <script src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.15/angular-route.min.js"></script>
   <script>
-    angular.module('app', []);
 
     angular.module('app', ['ngRoute']).config(function($routeProvider){
     	$routeProvider
-    		.when('/', {
+    		.when('/studentPicked', {
     			templateUrl: 'partial.html'
     		})
-    		.when('/one', {
-    			template: '<p>page one!</p>'
-    		});
+    		.otherwise({
+    			template: "<p>Welcome to Inner Circle Martial Arts, please pick your name from the list and check in for class!</p>"
+    		})
+    	;
     });
 
 
@@ -25,6 +27,9 @@
 		function ($scope, $http) {
 			$scope.formData = {};
 			$scope.students = [];
+			$scope.setStudent = function(studentID) {
+				$scope.currStudent = studentID;
+			}
 
 			$http.get('getstudents.php')
 				.success(function(data) {
@@ -82,29 +87,29 @@
 </head>
 <body>
 
-<div ng-controller="AddController">	
-	<a class="pass" href="#">LOG IN</a>
+<div class="appContainer" ng-controller="AddController">	
+	<img class="logo" src="http://florencekarate.com/wp-content/themes/premier/images/logo.png" alt="">
+	<div class="header clearfix">
+		<a class="pass" href="#">LOG IN</a>
+		<form class="hide" ng-submit="addStudent($event)">
+			<input type="text" ng-model="formData.name" placeholder="Name"> 
+			<input type="text" ng-model="formData.email" placeholder="Email">
+			<input type="text" ng-model="formData.phone" placeholder="Phone"> 
+			<button>Add Student</button>
+	  	</form>
+	</div>
   	
-  	<form class="hide" style="display: none;" ng-submit="addStudent($event)">
-		<input type="text" ng-model="formData.name" placeholder="Name"> 
-		<input type="text" ng-model="formData.email" placeholder="Email">
-		<input type="text" ng-model="formData.phone" placeholder="Phone"> 
-		<button>Add Student</button>
-  	</form>
+	<div class="students-list">
+		 <ul>
+			<li ng-repeat="student in students">
+				<a href="#/studentPicked" ng-click="setStudent(student.student_name)">{{student.student_name}}{{student.email}}</a>
+			</li>
+		</ul>
+  	</div>
 
-	<ul>
-		<li ng-repeat="student in students">
-		{{ $index }}: 
-		{{student.student_name}}
-		{{student.email}}
-		{{student.phone}}
-		</li>
-	</ul>
+	
 
-	<a href="#/one">One</a>
-	<a href="#/two">Two</a>
-
-	<div ng-view></div>
+	<div class="student-view" ng-view></div>
 
 </div>
 </body>
