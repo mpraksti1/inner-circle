@@ -51,30 +51,50 @@ ul {
 	bottom: 0;
 	padding: 25px;
 	background: #eee;
-}
 
-.students-list li a {
-	  display: block;
-	  background: #D7D7D7;
-	  text-align: center;
-	  margin-bottom: 10px;
-	  padding: 11px;
-	  text-transform: uppercase;
-	  text-shadow:-1px 1px rgba(0,0,0,0.1);
-	  color: #fff;
-	  border-radius: 5px;
-	  box-shadow: -1px 1px 1px rgba(0,0,0,0.3);
-	  transition:0.1s ease-in;
-}
 
-.students-list li a:hover{
-	box-shadow: -2px 2px 2px rgba(0,0,0,0.3);
+	li a { 
+		  display: block;
+		  background: #D7D7D7;
+		  text-align: center;
+		  margin-bottom: 10px;
+		  padding: 11px;
+		  text-transform: uppercase;
+		  text-shadow:-1px 1px rgba(0,0,0,0.1);
+		  color: #fff;
+		  border-radius: 5px;
+		  box-shadow: -1px 1px 1px rgba(0,0,0,0.3);
+		  transition:0.1s ease-in;
+	}
+
+	li a:hover{
+		box-shadow: -2px 2px 2px rgba(0,0,0,0.3);
+	}
 }
 
 .student-area {
 	float: left;
 	width: 100%;
 	text-align: center;
+
+	.class-btn a {
+		display: inline-block;
+		float: left;
+		background: #D7D7D7;
+		text-align: center;
+		margin-bottom: 10px;
+		padding: 11px;
+		text-transform: uppercase;
+		text-shadow:-1px 1px rgba(0,0,0,0.1);
+		color: #fff;
+		border-radius: 5px;
+		box-shadow: -1px 1px 1px rgba(0,0,0,0.3);
+		transition:0.1s ease-in;
+	}
+
+	.class-btn {
+		display: inline-block;
+	}
 }
 
 .student-view {
@@ -85,25 +105,6 @@ ul {
 	bottom: 0;
 	top: 148px;
 	padding: 50px;
-}
-
-.student-area .class-btn a {
-	display: inline-block;
-	float: left;
-	background: #D7D7D7;
-	text-align: center;
-	margin-bottom: 10px;
-	padding: 11px;
-	text-transform: uppercase;
-	text-shadow:-1px 1px rgba(0,0,0,0.1);
-	color: #fff;
-	border-radius: 5px;
-	box-shadow: -1px 1px 1px rgba(0,0,0,0.3);
-	transition:0.1s ease-in;
-}
-
-.student-area .class-btn {
-	display: inline-block;
 }
 
 .class-list {

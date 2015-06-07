@@ -16,4 +16,6 @@
 	));
 
 	header('location: getstudents.php');
+
+	$dbhandle->close();
 ?>

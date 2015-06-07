@@ -5,4 +5,6 @@
 	$students = $dbhandle->select('SELECT * FROM students');
 
 	echo json_encode($students);
+
+	$dbhandle->close();
 ?>

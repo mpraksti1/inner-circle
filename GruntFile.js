@@ -15,32 +15,25 @@ module.exports = function(grunt) {
 			]
 		},
 		sass: {
-			dev: {
-				options: {
-					style: 'expanded',
-					banner: '<%= tag.banner %>',
-					compass: true
-				},
-				files: {
-				    '<%= project.assets %>/css/style.css': '<%= project.css %>'
-				}
-			},
 		  dist: {
 		    options: {
-		      style: 'compressed',
-		      compass: true
+		      style: 'expanded',
 		    },
 		    files: {
-		      '<%= project.assets %>/css/style.css': '<%= project.css %>'
+		      'app/www/css/style.css': 'app/sass/*.scss'
 		    }
 		  }
 		},
 		watch: {
 		  sass: {
-		    files: '<%= project.src %>/scss/{,*/}*.{scss,sass}',
-		    tasks: ['sass:dev']
+		    files: 'app/sass/*.scss',
+		    tasks: ['sass']
 		  }
 		}
 	});
+
+	grunt.loadNpmTasks('grunt-contrib-watch');
+	grunt.loadNpmTasks('grunt-contrib-sass');
+	grunt.registerTask('default', ['sass']);
 };
 

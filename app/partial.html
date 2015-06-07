@@ -1,21 +1,9 @@
-<div class="student-area">
-	<h2>Hi, {{ currStudent }}!</h2>
+<div class="student-area" data-ng-init="checkInForClass()">
+	<h2>Hi, {{ stuName }}!</h2>
 	<p>Pick a class to sign in for!</p>
 	<ul class="class-list clearfix">
-		<li class="class-btn">
-			<a href="#">Krav</a>
-		</li>
-		<li class="class-btn">
-			<a href="#">JKD</a>
-		</li>
-		<li class="class-btn">
-			<a href="#">Escrema</a>
-		</li>
-		<li class="class-btn">
-			<a href="#">Jujitsu</a>
-		</li>
-		<li class="class-btn">
-			<a href="#">Kempo</a>
+		<li class="class-btn" ng-repeat="class in classesList" id="{{ class.id }}">
+			<a href="javascript:void(0)">{{ class.name }}</a>
 		</li>
 	</ul>
 </div>
