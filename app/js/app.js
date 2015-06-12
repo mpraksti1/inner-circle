@@ -59,8 +59,16 @@ angular.module('app', ['ui.router'])
 	    		}
 	    	});
 
-    });
+    })
+;
 
+angular.module('app').constant('config', {
+	url: {
+		students: 'getstudents.php',
+		classes: 'getclasses.php',
+		records: 'getrecords.php'
+	}
+});
 
 
     angular.module('app').controller('AddController', [
@@ -69,15 +77,17 @@ angular.module('app', ['ui.router'])
 		'$http',
 		'$state',
 		'$stateParams',
+		'config',
 
-		function ($rootScope, $scope, $http, $state, $stateParams) {
+		function ($rootScope, $scope, $http, $state, $stateParams, config) {
 			$scope.formData = {};
 			$scope.students = [];
 			$stateParams.currStudent = {};
 
 			//Retrieve student list
 
-			$http.get('getstudents.php')
+			//$http.get('getstudents.php')
+			$http.get(config.url.students)
 				.success(function(data) {
 					$scope.students = data;
 				})
@@ -114,7 +124,16 @@ angular.module('app', ['ui.router'])
 	        	;
 	    	}
 
-	    	//Check in functionality
+	    	$scope.getCount = function(record, _class) {
+	    		var count = 0;
+	    		angular.forEach(record.classes, function(val, key) {
+	    			console.log(_class);
+	    			if (val.name == _class.name) count = val.count;
+	    		});
+	    		return count;
+	    	}
+
+	    	// Check in functionality
 	    	
 	    	$scope.IDs = {};
 			$scope.classTable = [];
@@ -128,7 +147,21 @@ angular.module('app', ['ui.router'])
 				})
 			;
 
-	    	//retrieve classes
+			// Check in functionality
+	    	
+	    	$scope.IDs = {};
+			$scope.records = [];
+
+			$http.get('getrecords.php')
+				.success(function(data) {
+					$scope.records = data;
+				})
+				.error(function(){
+					return;
+				})
+			;
+
+	    	// Retrieve classes
 
 	    	$scope.classesList;
 
@@ -141,18 +174,68 @@ angular.module('app', ['ui.router'])
 				})
 			;
   		}
-  	])
-	.controller('studentController', [
-		'$rootScope',
-		'$scope', 
-		'$http',
-		'$state',
-		'$stateParams',
+  	]);
 
-		function ($rootScope, $scope, $http, $state, $stateParams) {
+	/*angular.module('app').controller('AdminController', [
+		'data',
 
+		function(data){
+			$scope.students = [];
+
+			data.getStudents()
+				.then(function(students){
+					$scope.students = students;
+				}
+			);
 		}
 	]);
+
+	angular.module('app').factory('data', [
+		'$q',
+		'$http',
+
+		function($q, $http){
+			// Private vars
+			var students = [];
+			var classes = [];
+			var records = [];
+
+			// Public functions/vars
+			var _public = {
+				getStudents: function(){
+					// if we've already retrieved these
+					if (students.length > 0) return students;
+					// otherwise, we need to make the ajax call
+					else {
+						$http.get('getstudents.php')
+							.success(function(data) {
+								students = data;
+							})
+							.error(function(){
+								return;
+							})
+						;
+					}
+				},
+
+				getClasses: function(){
+
+				},
+
+				getRecords: function(){
+
+				}
+			};
+
+			// Private functions here
+			function getStudents(){
+
+			}
+
+			return _public;
+		}
+	]); */
+
 
     angular.element(document).ready(function() {
     	angular.bootstrap(document, ['app']);

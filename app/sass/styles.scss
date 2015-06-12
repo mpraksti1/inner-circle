@@ -116,3 +116,23 @@ ul {
 	display: block;
 	clear: both;
 }
+
+// Starting admin panel styles
+
+.admin-panel {
+	.row:after {
+	  content: "";
+	  display: table;
+	  clear: both;
+	}
+
+	.cell {
+		float: left;
+		width: 15.5%;
+		background: brown;
+		color: #fff;
+		border: 1px solid white;
+		text-align: center;
+
+	}
+}

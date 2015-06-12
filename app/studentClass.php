@@ -10,10 +10,13 @@
 	$dbhandle->connect('inner_circle', 'root', '');
 	
 	$dbhandle->insert('student_classes', array(
-		'studentID' 	=> $_POST['studentID'], 
-		'classID'		=> $_POST['classID']
+		'student_id' 	=> $_POST['studentID'], 
+		'class_id'		=> $_POST['classID'],
+		'date'			=> date('Y-m-d H:i:s')
 	));
 
 	$dbhandle->close();
 
+	//echo $dbhandle->error;
+	phpinfo()
 ?>
