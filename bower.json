@@ -1,0 +1,20 @@
+{
+  "name": "inner-circle",
+  "version": "0.0.0",
+  "homepage": "https://github.com/mpraksti1/inner-circle",
+  "description": "",
+  "main": "",
+  "moduleType": [],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "flexslider": "~2.5.0",
+    "angular-ui-router": "~0.2.15"
+  }
+}
