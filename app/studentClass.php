@@ -16,7 +16,4 @@
 	));
 
 	$dbhandle->close();
-
-	//echo $dbhandle->error;
-	phpinfo()
 ?>

@@ -3,11 +3,22 @@ html, body {
 }
 
 body {
-	background: #000;
 	font-family: 'Open Sans', arial, helvetica, sans-serif;
 	color: #333;
 	margin: 0;
 	padding: 0;
+}
+
+header {
+	border-bottom: 1px solid #922B2B;
+	background: #333; 
+
+	.logo {
+		display: block;
+		width: 200px;
+		margin: 0 0 0 15px;
+		padding: 10px 0;
+	}
 }
 
 .appContainer {
@@ -26,9 +37,7 @@ ul {
 	padding: 0;
 }
 
-.logo {
-	width: 315px;
-}
+
 
 .header {
 	background: #8C2323;
@@ -47,64 +56,88 @@ ul {
 .students-list {
 	width: 265px;
 	position: absolute;
-	top: 148px;
+	top: 0px;
 	bottom: 0;
-	padding: 25px;
-	background: #eee;
+	padding: 15px;
+	background: #6F6F6F;
+	overflow: auto;
 
 
 	li a { 
-		  display: block;
-		  background: #D7D7D7;
-		  text-align: center;
-		  margin-bottom: 10px;
-		  padding: 11px;
-		  text-transform: uppercase;
-		  text-shadow:-1px 1px rgba(0,0,0,0.1);
-		  color: #fff;
-		  border-radius: 5px;
-		  box-shadow: -1px 1px 1px rgba(0,0,0,0.3);
-		  transition:0.1s ease-in;
+		display: block;
+		background: #454545;
+		margin-bottom: 10px;
+		padding: 20px;
+		font-size: 14px;
+		font-weight: 300;
+		text-align: center;
+		font-family: Raleway, arial, helvetica, sans-serif;
+		color: #fff;
+		border-radius: 2px;
+		box-shadow: inset 0px 2px 2px 2px rgba(0, 0, 0, 0.2);
+		transition: 0.1s ease-in;
 	}
 
-	li a:hover{
-		box-shadow: -2px 2px 2px rgba(0,0,0,0.3);
+	li a:hover,
+	li a:active {
+		color: #894E4E;
+	}
+
+	hr {
+		border: none;
+		border-bottom: 1px solid rgba(255,0,0,0.5);
+  		margin: 10px 25px;
 	}
 }
 
 .student-area {
 	float: left;
 	width: 100%;
-	text-align: center;
+	font-family: Raleway, arial, helvetica, sans-serif;
+	font-weight: 300;
 
 	.class-btn a {
-		display: inline-block;
-		float: left;
-		background: #D7D7D7;
+		display: block;
+		background: #454545;
+		padding: 0 0 5px 0;
+		font-size: 14px;
+		font-weight: 300;
 		text-align: center;
-		margin-bottom: 10px;
-		padding: 11px;
-		text-transform: uppercase;
-		text-shadow:-1px 1px rgba(0,0,0,0.1);
+		font-family: Raleway, arial, helvetica, sans-serif;
 		color: #fff;
-		border-radius: 5px;
-		box-shadow: -1px 1px 1px rgba(0,0,0,0.3);
-		transition:0.1s ease-in;
+		border-radius: 2px;
+		transition: 0.1s ease-in;
 	}
 
 	.class-btn {
 		display: inline-block;
+		width: 150px;
+  		margin-right: 20px;
+  		margin-bottom: 20px;
+		
+		img {
+			width: 100%
+		}
 	}
 }
 
 .student-view {
 	position: absolute;
-	background: #fff;
-	left: 315px;
+	background: #3d3d3d;
+	color: #fff;
+	left: 295px;
 	right: 0;
 	bottom: 0;
-	top: 148px;
-	padding: 50px;
+	top: 0px;
+	padding: 25px;
+	text-align: center;
+}
+
+.home {
+	h1 {
+		font-family: "Trade Winds", arial, helvetica, sans-serif;
+		margin-top: 0;
+	}
 }
 
 .class-list {

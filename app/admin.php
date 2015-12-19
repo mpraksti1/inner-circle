@@ -31,37 +31,9 @@
 			<div class="cell" ng-repeat="_class in classesList" ng-class="{blank: getCount(record, _class) == 0}">
 				<p>{{ getCount(record, _class) }}</p>
 			</div>			
-			<!--
-			<div class="cell">
-				<p>{{record.name}}</p>
-			</div>
-			<div class="cell" ng-repeat="class in record.classes">
-				<p ng-if="class.name === 'JKD'">{{ class.count }}</p>
-				<p ng-if="class.name != 'JKD'">None</p>
-			</div>
-
-			<div class="cell" ng-repeat="class in record.classes">
-				<p ng-if="class.name === 'Jujitsu'">{{ class.count }}</p>
-				<p ng-if="class.name != 'Jujitsu'">None</p>
-			</div>
-
-			<div class="cell" ng-repeat="class in record.classes">
-				<p ng-if="class.name === 'Escrema'">{{ class.count }}</p>
-				<p ng-if="class.name != 'Escrema'">None</p>
-			</div>
-
-			<div class="cell" ng-repeat="class in record.classes">
-				<p ng-if="class.name === 'Kempo'">{{ class.count }}</p>
-				<p ng-if="class.name != 'Kempo'">None</p>
-			</div>
-
-			<div class="cell" ng-repeat="class in record.classes">
-				<p ng-if="class.name === 'Krav'">{{ class.count }}</p>
-				<p ng-if="class.name != 'Krav'">None</p>
-			</div>
-			-->
 		</div>
   	</table>
 </div>
+
 </body>
 </html>

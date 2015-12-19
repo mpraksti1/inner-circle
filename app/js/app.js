@@ -71,172 +71,176 @@ angular.module('app').constant('config', {
 });
 
 
-    angular.module('app').controller('AddController', [
-		'$rootScope',
-		'$scope', 
-		'$http',
-		'$state',
-		'$stateParams',
-		'config',
+angular.module('app').controller('AddController', [
+	'$rootScope',
+	'$scope', 
+	'$http',
+	'$state',
+	'$stateParams',
+	'config',
 
-		function ($rootScope, $scope, $http, $state, $stateParams, config) {
-			$scope.formData = {};
-			$scope.students = [];
-			$stateParams.currStudent = {};
+	function ($rootScope, $scope, $http, $state, $stateParams, config) {
+		$scope.formData = {};
+		$scope.students = [];
+		$stateParams.currStudent = {};
 
-			//Retrieve student list
+		// Start home state slider
+		$('.flexslider').flexslider({
+		    animation: "slide",
+		});
 
-			//$http.get('getstudents.php')
-			$http.get(config.url.students)
-				.success(function(data) {
-					$scope.students = data;
-				})
-				.error(function(){
-					return;
-				})
-			;
+		//Retrieve student list
 
-			//Add a new student
+		$http.get(config.url.students)
+			.success(function(data) {
+				$scope.students = data;
+			})
+			.error(function(){
+				return;
+			})
+		;
 
-	    	$scope.addStudent = function(evt) {
-	    		evt.preventDefault();
+		//Add a new student
 
-	    		var req = {
-		    		method: 'POST',
-					url: 'addstudent.php',
-					headers: {
-						'Content-Type': "application/x-www-form-urlencoded; charset=utf-8"
-					},
-					data: 'name=' + $scope.formData.name + '&email=' + $scope.formData.email + '&phone=' + $scope.formData.phone
- 				};
+    	$scope.addStudent = function(evt) {
+    		evt.preventDefault();
 
-	        	$http(req)
-	        		
-	        		.success(function(data) {
-	        			$scope.formData = {};
-	        			$scope.students = data;
-	        		})
+    		var req = {
+	    		method: 'POST',
+				url: 'addstudent.php',
+				headers: {
+					'Content-Type': "application/x-www-form-urlencoded; charset=utf-8"
+				},
+				data: 'name=' + $scope.formData.name + '&email=' + $scope.formData.email + '&phone=' + $scope.formData.phone
+				};
 
-	        		.error(function(){
-	        			return;
-	        		})
+        	$http(req)
+        		
+        		.success(function(data) {
+        			$scope.formData = {};
+        			$scope.students = data;
+        		})
 
-	        	;
-	    	}
+        		.error(function(){
+        			return;
+        		})
 
-	    	$scope.getCount = function(record, _class) {
-	    		var count = 0;
-	    		angular.forEach(record.classes, function(val, key) {
-	    			console.log(_class);
-	    			if (val.name == _class.name) count = val.count;
-	    		});
-	    		return count;
-	    	}
+        	;
+    	}
 
-	    	// Check in functionality
-	    	
-	    	$scope.IDs = {};
-			$scope.classTable = [];
+    	$scope.getCount = function(record, _class) {
+    		var count = 0;
+    		angular.forEach(record.classes, function(val, key) {
+    			console.log(_class);
+    			if (val.name == _class.name) count = val.count;
+    		});
+    		return count;
+    	}
 
-			$http.get('studentClassTable.php')
-				.success(function(data) {
-					$scope.classTable = data;
-				})
-				.error(function(){
-					return;
-				})
-			;
+    	// Check in functionality
+    	
+    	$scope.IDs = {};
+		$scope.classTable = [];
 
-			// Check in functionality
-	    	
-	    	$scope.IDs = {};
-			$scope.records = [];
+		$http.get('studentClassTable.php')
+			.success(function(data) {
+				$scope.classTable = data;
+			})
+			.error(function(){
+				return;
+			})
+		;
 
-			$http.get('getrecords.php')
-				.success(function(data) {
-					$scope.records = data;
-				})
-				.error(function(){
-					return;
-				})
-			;
+		// Check in functionality
+    	
+    	$scope.IDs = {};
+		$scope.records = [];
 
-	    	// Retrieve classes
+		$http.get('getrecords.php')
+			.success(function(data) {
+				$scope.records = data;
+			})
+			.error(function(){
+				return;
+			})
+		;
 
-	    	$scope.classesList;
+    	// Retrieve classes
 
-	    	$http.get('getclasses.php')
-				.success(function(data) {
-					$scope.classesList = data;
-				})
-				.error(function(){
-					return;
-				})
-			;
-  		}
-  	]);
+    	$scope.classesList;
 
-	/*angular.module('app').controller('AdminController', [
-		'data',
-
-		function(data){
-			$scope.students = [];
-
-			data.getStudents()
-				.then(function(students){
-					$scope.students = students;
-				}
-			);
+    	$http.get('getclasses.php')
+			.success(function(data) {
+				$scope.classesList = data;
+			})
+			.error(function(){
+				return;
+			})
+		;
 		}
 	]);
 
-	angular.module('app').factory('data', [
-		'$q',
-		'$http',
+/*angular.module('app').controller('AdminController', [
+	'data',
 
-		function($q, $http){
-			// Private vars
-			var students = [];
-			var classes = [];
-			var records = [];
+	function(data){
+		$scope.students = [];
 
-			// Public functions/vars
-			var _public = {
-				getStudents: function(){
-					// if we've already retrieved these
-					if (students.length > 0) return students;
-					// otherwise, we need to make the ajax call
-					else {
-						$http.get('getstudents.php')
-							.success(function(data) {
-								students = data;
-							})
-							.error(function(){
-								return;
-							})
-						;
-					}
-				},
+		data.getStudents()
+			.then(function(students){
+				$scope.students = students;
+			}
+		);
+	}
+]);
 
-				getClasses: function(){
+angular.module('app').factory('data', [
+	'$q',
+	'$http',
 
-				},
+	function($q, $http){
+		// Private vars
+		var students = [];
+		var classes = [];
+		var records = [];
 
-				getRecords: function(){
-
+		// Public functions/vars
+		var _public = {
+			getStudents: function(){
+				// if we've already retrieved these
+				if (students.length > 0) return students;
+				// otherwise, we need to make the ajax call
+				else {
+					$http.get('getstudents.php')
+						.success(function(data) {
+							students = data;
+						})
+						.error(function(){
+							return;
+						})
+					;
 				}
-			};
+			},
 
-			// Private functions here
-			function getStudents(){
+			getClasses: function(){
+
+			},
+
+			getRecords: function(){
 
 			}
+		};
 
-			return _public;
+		// Private functions here
+		function getStudents(){
+
 		}
-	]); */
+
+		return _public;
+	}
+]); */
 
 
-    angular.element(document).ready(function() {
-    	angular.bootstrap(document, ['app']);
-    });
+angular.element(document).ready(function() {
+	angular.bootstrap(document, ['app']);
+});
